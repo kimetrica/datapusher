@@ -24,3 +24,15 @@ PORT = 8800
 
 #LOG_FILE = '/tmp/ckan_service.log'
 STDERR = True
+
+
+def get_row_set(table_set):
+    """Return the table called "data" or the first table in the set."""
+    names = [r.name.lower() for r in table_set.tables]
+    try:
+        return table_set.tables[names.index('data')]
+    except ValueError:
+        return table_set.tables[0]
+
+
+GET_ROW_SET = get_row_set
